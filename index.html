@@ -1,0 +1,482 @@
+# Osteoporosis-Related
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 骨質疏鬆與牙科決策指引 | 跨科別整合平台</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050a14;
+            --bg-card: #0d1526;
+            --accent-yellow: #ffee00;
+            --text-bright: #f0f4f8;
+            --text-dim: #a0aec0;
+            --dental-teal: #00d4ff;
+            --ortho-orange: #ff8c00;
+            --danger-red: #ff4d4d;
+            --safe-green: #00e676;
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-bright);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 60vh;
+            background: radial-gradient(circle at center, #0a1931 0%, #050a14 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            border-bottom: 2px solid var(--accent-yellow);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; width: 100%; height: 100px;
+            background: linear-gradient(transparent, var(--bg-dark));
+        }
+
+        .hero-date {
+            background: var(--accent-yellow);
+            color: #000;
+            padding: 4px 15px;
+            font-weight: 900;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: clamp(2rem, 6vw, 3.8rem);
+            color: var(--text-bright);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255,238,0,0.3);
+        }
+
+        h1 span {
+            color: var(--accent-yellow);
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 800px;
+        }
+
+        /* --- STICKY NAV --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(5, 10, 20, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--text-dim);
+            color: var(--text-dim);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+            background: rgba(255, 238, 0, 0.1);
+        }
+
+        /* --- MAIN CONTENT --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border-color: rgba(255, 238, 0, 0.3);
+        }
+
+        .card-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-yellow);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+            color: var(--text-bright);
+        }
+
+        .card .en-name {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .protocol-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .protocol-box h4 {
+            font-size: 0.85rem;
+            color: var(--dental-teal);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .protocol-box p {
+            font-size: 0.9rem;
+            color: var(--text-bright);
+        }
+
+        /* --- IMPORTANT REMINDERS (The Focal Point) --- */
+        .reminders {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #0d1b33 0%, #050a14 100%);
+            border-radius: 30px;
+            padding: 50px;
+            border: 1px solid rgba(255, 238, 0, 0.2);
+            position: relative;
+        }
+
+        .reminders h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent-yellow);
+        }
+
+        .reminder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .reminder-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+        }
+
+        .dental-remind h3 { color: var(--dental-teal); border-color: var(--dental-teal); }
+        .ortho-remind h3 { color: var(--ortho-orange); border-color: var(--ortho-orange); }
+
+        .remind-item {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .remind-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .remind-text b {
+            color: var(--text-bright);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .remind-text p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-tag {
+            color: var(--accent-yellow);
+            font-weight: 700;
+        }
+
+        /* --- ANIMATIONS --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .reminder-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+            .reminders { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="hero-date">2026 CLINICAL UPDATE</div>
+    <h1>骨鬆用藥與<span>牙科治療</span>指引</h1>
+    <p class="hero-sub">整合最新跨科別臨床文獻，為您提供最清晰的用藥風險管理與手術決策建議。</p>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <button class="filter-btn active" onclick="filterCards('all')">顯示全部</button>
+        <button class="filter-btn" onclick="filterCards('bone-builder')">造骨促進劑</button>
+        <button class="filter-btn" onclick="filterCards('antiresorptive')">抗骨吸收劑</button>
+        <button class="filter-btn" onclick="filterCards('serms')">SERMs</button>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="grid" id="drug-grid">
+        <!-- Evenity -->
+        <div class="card fade-in" data-type="bone-builder">
+            <span class="card-type">雙效機制 (造骨+抗流失)</span>
+            <h3>益穩挺 Evenity</h3>
+            <span class="en-name">Romosozumab</span>
+            <p>2026 首選強效藥物。每月注射一次，療程一年。</p>
+            <div class="protocol-box">
+                <h4>🦷 牙科決策</h4>
+                <p>非侵入性治療不需停藥。拔牙建議在藥物使用 3 個月後進行。心血管高風險者需特別注意。</p>
+            </div>
+        </div>
+
+        <!-- Forteo -->
+        <div class="card fade-in" data-type="bone-builder">
+            <span class="card-type">造骨促進劑</span>
+            <h3>骨穩 Forteo</h3>
+            <span class="en-name">Teriparatide</span>
+            <p>每日皮下注射。牙科治療的最友善選擇。</p>
+            <div class="protocol-box">
+                <h4>🦷 牙科決策</h4>
+                <p><b style="color:var(--safe-green)">完全不需停藥</b>。包括植牙與拔牙，皆可安全進行。</p>
+            </div>
+        </div>
+
+        <!-- Prolia -->
+        <div class="card fade-in" data-type="antiresorptive">
+            <span class="card-type">單株抗體</span>
+            <h3>保骼麗 Prolia</h3>
+            <span class="en-name">Denosumab</span>
+            <p>半年注射一次。停藥後骨流失反彈風險高。</p>
+            <div class="protocol-box">
+                <h4>🦷 牙科決策</h4>
+                <p>拔牙/植牙應於注射後第 3-4 個月進行（藥效低點），術後 1 個月方可注射下一劑。</p>
+            </div>
+        </div>
+
+        <!-- Fosamax -->
+        <div class="card fade-in" data-type="antiresorptive">
+            <span class="card-type">雙磷酸鹽類</span>
+            <h3>福善美 Fosamax</h3>
+            <span class="en-name">Alendronate</span>
+            <p>每週口服一次。最常見的長效骨鬆藥物。</p>
+            <div class="protocol-box">
+                <h4>🦷 牙科決策</h4>
+                <p>用藥 < 4 年不需停藥。滿 4 年或合併類固醇者，建議術前停藥 2 個月，術後骨癒合再恢復。</p>
+            </div>
+        </div>
+
+        <!-- Aclasta -->
+        <div class="card fade-in" data-type="antiresorptive">
+            <span class="card-type">雙磷酸鹽 (強效)</span>
+            <h3>骨力強 Aclasta</h3>
+            <span class="en-name">Zoledronic Acid</span>
+            <p>每年靜脈注射一次。半衰期極長。</p>
+            <div class="protocol-box">
+                <h4>🦷 牙科決策</h4>
+                <p>MRONJ 高風險藥物。手術建議避開注射後的前三個月。嚴謹口腔衛生維護為必要條件。</p>
+            </div>
+        </div>
+
+        <!-- Evista -->
+        <div class="card fade-in" data-type="serms">
+            <span class="card-type">SERMs</span>
+            <h3>鈣穩 Evista</h3>
+            <span class="en-name">Raloxifene</span>
+            <p>每日口服。適用於停經後婦女。</p>
+            <div class="protocol-box">
+                <h4>🦷 牙科決策</h4>
+                <p><b style="color:var(--safe-green)">完全不需停藥</b>。無顎骨壞死風險報告。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPORTANT REMINDERS -->
+    <section class="reminders fade-in" id="important-notes">
+        <h2>⚠️ 2026 跨科別整合提醒</h2>
+        <div class="reminder-grid">
+            <!-- 牙科部分 -->
+            <div class="reminder-col dental-remind">
+                <h3>牙科治療注意事項</h3>
+                <div class="remind-item">
+                    <div class="remind-icon">📌</div>
+                    <div class="remind-text">
+                        <b>MRONJ 風險評估</b>
+                        <p>所有侵入性手術（拔牙、植牙、牙周翻瓣）均需依據藥物種類與年資評估風險等級。</p>
+                    </div>
+                </div>
+                <div class="remind-item">
+                    <div class="remind-icon">🧼</div>
+                    <div class="remind-text">
+                        <b>口腔衛生先行</b>
+                        <p>在開始骨鬆藥物療程前，建議先完成所有牙科治療，建立良好的口腔衛生環境。</p>
+                    </div>
+                </div>
+                <div class="remind-item">
+                    <div class="remind-icon">⏱️</div>
+                    <div class="remind-text">
+                        <b>癒合觀察期</b>
+                        <p>術後傷口若超過 8 週未癒合或骨頭暴露，需立即啟動 MRONJ 處置流程。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 骨科部分 -->
+            <div class="reminder-col ortho-remind">
+                <h3>骨科/內科協作建議</h3>
+                <div class="remind-item">
+                    <div class="remind-icon">📋</div>
+                    <div class="remind-text">
+                        <b>嚴禁擅自停藥</b>
+                        <p>特別是使用 Prolia 的患者，擅自停藥可能引發脊椎壓迫性骨折反彈。</p>
+                    </div>
+                </div>
+                <div class="remind-item">
+                    <div class="remind-icon">🔄</div>
+                    <div class="remind-text">
+                        <b>序貫療法接軌</b>
+                        <p>Evenity 或 Forteo 療程結束後，應無縫接軌抗流失藥物，以鎖住骨密度增長效益。</p>
+                    </div>
+                </div>
+                <div class="remind-item">
+                    <div class="remind-icon">🧪</div>
+                    <div class="remind-text">
+                        <b>檢驗數值監控</b>
+                        <p>手術前可參考 CTX 或 P1NP 等骨轉換指標，雖然非絕對，但能輔助臨床決策參考。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>更新日期：2026年5月 | <span class="footer-tag">邱浩能醫師專業整理</span></p>
+    <p style="margin-top:10px; opacity: 0.6;">本平台內容僅供醫療專業參考，實際臨床決策請依患者個別狀況與最新指引為準。</p>
+</footer>
+
+<script>
+    // 滾動顯示動畫
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // 藥物分類過濾功能
+    function filterCards(category) {
+        const cards = document.querySelectorAll('.card');
+        const buttons = document.querySelectorAll('.filter-btn');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        cards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-type') === category) {
+                card.style.display = 'block';
+                setTimeout(() => card.style.opacity = '1', 10);
+            } else {
+                card.style.opacity = '0';
+                setTimeout(() => card.style.display = 'none', 300);
+            }
+        });
+    }
+
+    // 平滑滾動至錨點
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
